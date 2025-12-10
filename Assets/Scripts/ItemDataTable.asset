@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a9e6a1c9b63aa47a524e75f00d4a04, type: 3}
+  m_Name: ItemDataTable
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDataTable
+  itemDataList:
+  - id: 0
+    name: "\u30AF\u30E9\u30C3\u30AB\u30FC"
+    description: "\u5927\u304D\u306A\u97F3\u304C\u51FA\u308B,\u8033\u304C\u5927\u304D\u306A\u6575\u306B\u6709\u52B9"
+    effectiveEnemyId: 0
+    stopTime: 5
+  - id: 1
+    name: "\u61D0\u4E2D\u96FB\u706F"
+    description: "\u5F37\u3044\u5149\u3092\u653E\u3064,\u76EE\u304C\u5927\u304D\u306A\u6575\u306B\u6709\u52B9"
+    effectiveEnemyId: 1
+    stopTime: 5
