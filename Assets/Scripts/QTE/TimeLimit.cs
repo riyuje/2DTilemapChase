@@ -22,6 +22,7 @@ public class TimeLimit : MonoBehaviour
     private PlayerController playerController;
 
     //スライダー
+    [SerializeField]
     private Slider slider;
     //タイマーが起動しているかどうか
     private bool startTimer = false;
@@ -29,61 +30,63 @@ public class TimeLimit : MonoBehaviour
     [SerializeField]
     private Text pushButtonText;
 
-    void Update()
+    [SerializeField]
+    private GameObject qteUIObj;
+
+    //キャラクタースクリプト、制限時間を保存しておく
+    public void SetParam(PlayerController player, QTEManager.PushButton pushButton, float limit)
     {
-        if (startTimer)
+        playerController = player;
+        this.limitTime = limit;
+
+        //ボタンを押すとテキスト表示する
+        if (pushButton == QTEManager.PushButton.Fire1)
         {
-            //制限時間をスライダーの値に反映させる
-            if(nowTime < limitTime)
-            {
-                nowTime += Time.deltaTime;
-                slider.value += slider.maxValue / limitTime * Time.deltaTime;
-
-                //危ない領域に入ったらタイマーの色を変更する
-                if(slider.value >= (slider.maxValue * (limitPer * 0.01f)))
-                {
-                    timerImage.color = new Color(1f, 0f, 0f, 1f);
-                }
-            }
-            else 
-            {
-                SetFinished();
-                playerController.SetState(PlayerController.PlayerState.Dead, null);
-            }
+            this.pushButtonText.text = "Push SPACE Key";
         }
-    }
 
+        //初期化処理
+        nowTime = 0f;
+        slider.value = 0f;
+
+        //設定を保存したらタイマースタート
+        IsStartTimer(true);
+
+    }
     //タイマーのオンオフ
     void IsStartTimer(bool flag)
     {
         startTimer = flag;
     }
 
+    void Update()
+    {
+        if (startTimer)
+        {
+            //制限時間をスライダーの値に反映させる
+            if (nowTime < limitTime)
+            {
+                nowTime += Time.deltaTime;
+                slider.value += slider.maxValue / limitTime * Time.deltaTime;
+
+                //危ない領域に入ったらタイマーの色を変更する
+                if (slider.value >= (slider.maxValue * (limitPer * 0.01f)))
+                {
+                    timerImage.color = new Color(1f, 0f, 0f, 1f);
+                }
+            }
+            else
+            {
+                SetFinished();
+                playerController.SetState(PlayerController.PlayerState.Dead);
+            }
+        }
+    }
+
     //タイマーを止めてUIを非表示
     void SetFinished()
     {
         IsStartTimer(false);
-        transform.parent.parent.gameObject.SetActive(false);
-    }
-
-    //キャラクタースクリプト、制限時間を保存しておく
-    public void SetParam(PlayerController player, SearchPlayerQTE.PushButton pushButton, float limit)
-    {
-        playerController = player;
-        this.limitTime = limit;
-
-        //ボタンを押すとテキスト表示する
-        if (pushButton == SearchPlayerQTE.PushButton.Fire1)
-        {
-            this.pushButtonText.text = "Push SPACE Key";
-        }
-
-        //初期化処理
-        slider = GetComponent<Slider>();
-        nowTime = 0f;
-        slider.value = 0f;
-
-        //設定を保存したらタイマースタート
-        IsStartTimer(true);
+        qteUIObj.SetActive(false);
     }
 }

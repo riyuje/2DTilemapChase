@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 lookDirection = new Vector2(0, -1.0f);  //キャラの向きの情報の設定用
 
     private PlayerState state = PlayerState.Normal;
-    private SearchPlayerQTE searchPlayerQTE;
+    
 
     public enum PlayerState
     {
@@ -67,15 +67,11 @@ public class PlayerController : MonoBehaviour
 
     private void QTEUpdate()
     {
-        if (searchPlayerQTE == null)
-        {
-            return;
-        }
 
-        if (Input.GetButtonDown(searchPlayerQTE.GetPushButton().ToString()))
+        if (Input.GetButtonDown(QTEManager.instance.GetPushButton().ToString()))
         {
-            searchPlayerQTE.SetFinish();
-            SetState(PlayerState.Normal, null);
+            QTEManager.instance.SetFinish();
+            SetState(PlayerState.Normal);
         }
     }
 
@@ -138,19 +134,13 @@ public class PlayerController : MonoBehaviour
     }
 
     //キャラクターの状態変更関数
-    public void SetState(PlayerState state, SearchPlayerQTE searchPlayerQTE)
+    public void SetState(PlayerState state)
     {
         //状態を変更
         this.state = state;
 
-        if(state == PlayerState.Normal)
+        if(state == PlayerState.QTE)
         {
-            this.searchPlayerQTE = null;
-        }
-        else if(state == PlayerState.QTE)
-        {
-            this.searchPlayerQTE = searchPlayerQTE;
-
             //移動停止
             rb.linearVelocity = Vector2.zero;
             anim.SetFloat("Speed", 0f);

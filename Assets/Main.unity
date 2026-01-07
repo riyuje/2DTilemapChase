@@ -2513,6 +2513,17 @@ Transform:
   - {fileID: 1473707490}
   m_Father: {fileID: 288888}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1110124848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8427541602099893375, guid: 259aa482c4ba9364089fd8ecd2c36435, type: 3}
+  m_PrefabInstance: {fileID: 6732102004783285844}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1126198652
 GameObject:
   m_ObjectHideFlags: 0
@@ -2584,6 +2595,55 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126198652}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1139867725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1139867727}
+  - component: {fileID: 1139867726}
+  m_Layer: 0
+  m_Name: QTEMnager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1139867726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139867725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbac7d1cfadfc54c9f3a0e364997d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QTEManager
+  QTEUI: {fileID: 1887427008}
+  timeLimit: {fileID: 1887427013}
+  limit: 10
+  playerController: {fileID: 1206766082}
+  pushButton: 0
+--- !u!4 &1139867727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139867725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -2826,6 +2886,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.24, y: 0.16389246}
   m_EdgeRadius: 0
+--- !u!114 &1357772377 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6190172815648710975, guid: 259aa482c4ba9364089fd8ecd2c36435, type: 3}
+  m_PrefabInstance: {fileID: 6732102004783285844}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1 &1473707489
 GameObject:
   m_ObjectHideFlags: 0
@@ -3197,6 +3268,17 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &1580356854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8863989404281388503, guid: 259aa482c4ba9364089fd8ecd2c36435, type: 3}
+  m_PrefabInstance: {fileID: 6732102004783285844}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &1592303745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4381,6 +4463,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3817481415361411476, guid: 259aa482c4ba9364089fd8ecd2c36435, type: 3}
   m_PrefabInstance: {fileID: 6732102004783285844}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1887427013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887427008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f184b065013f1c748a3eec40fce374f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimeLimit
+  timerImage: {fileID: 1110124848}
+  limitPer: 80
+  slider: {fileID: 1580356854}
+  pushButtonText: {fileID: 1357772377}
+  qteUIObj: {fileID: 1887427008}
 --- !u!195 &2131182639 stripped
 NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 2258445397945678207, guid: 26e3ab9dbb85e6f4ab178b9aa0e928bf, type: 3}
@@ -4493,7 +4592,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3817481415361411476, guid: 259aa482c4ba9364089fd8ecd2c36435, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1887427013}
   m_SourcePrefab: {fileID: 100100000, guid: 259aa482c4ba9364089fd8ecd2c36435, type: 3}
 --- !u!1001 &6957902135837649824
 PrefabInstance:
@@ -4577,15 +4679,16 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1592303747}
-  - {fileID: 713632873}
-  - {fileID: 288888}
-  - {fileID: 1206766081}
-  - {fileID: 6957902135837649824}
-  - {fileID: 6732102004783285844}
   - {fileID: 1886145963}
   - {fileID: 1647935473}
+  - {fileID: 1592303747}
+  - {fileID: 713632873}
+  - {fileID: 1139867727}
+  - {fileID: 288888}
   - {fileID: 347135689}
-  - {fileID: 1126198655}
-  - {fileID: 1169269625}
+  - {fileID: 1206766081}
+  - {fileID: 6957902135837649824}
   - {fileID: 524129601}
+  - {fileID: 1169269625}
+  - {fileID: 6732102004783285844}
+  - {fileID: 1126198655}
