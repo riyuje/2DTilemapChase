@@ -18,29 +18,7 @@ public class Chaser : MonoBehaviour
     private NavMeshAgent agent;  //NavMeshAgentを使用
     void Start()
     {
-        //NavMeshAgentを取得できるか確認する。取得できた場合のみ、if文内の処理を行う
-        if (TryGetComponent(out agent))
-        {
-            //インスタンス対応。ここでNavMeshAgentを有効化する。
-            //事前に入れておくと、Bakeしている地点を認識できずエラーになるため
-            //今回のようにUpdateメソッドで対応している場合は不要。
-            //agent.enabled = true;
-
-            //3D用の設定をオフにする。2Dなので、この処理がないと変な位置に移動する
-            agent.updateRotation = false;
-            agent.updateUpAxis = false;
-
-            //初期目的地設定(これがないと初期位置からずれる)
-            agent.destination = transform.position;
-            Debug.Log(agent.destination);
-
-            //取得できたので移動速度を設定
-            agent.speed = moveSpeed;
-        }
-        else
-        {
-            Debug.Log("NavMeshAgentが取得できません");
-        }
+       
     }
 
     void Update()
@@ -75,6 +53,37 @@ public class Chaser : MonoBehaviour
         {
             //対象が視界外の場合(距離が遠い場合)、移動を停止する
             agent.ResetPath();
+        }
+    }
+
+    public void Setup (Transform target, Tilemap tilemap )
+    {
+        this.target = target;
+
+        this.tilemap = tilemap;
+
+        //NavMeshAgentを取得できるか確認する。取得できた場合のみ、if文内の処理を行う
+        if (TryGetComponent(out agent))
+        {
+            //インスタンス対応。ここでNavMeshAgentを有効化する。
+            //事前に入れておくと、Bakeしている地点を認識できずエラーになるため
+            //今回のようにUpdateメソッドで対応している場合は不要。
+            //agent.enabled = true;
+
+            //3D用の設定をオフにする。2Dなので、この処理がないと変な位置に移動する
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+
+            //初期目的地設定(これがないと初期位置からずれる)
+            agent.destination = transform.position;
+            Debug.Log(agent.destination);
+
+            //取得できたので移動速度を設定
+            agent.speed = moveSpeed;
+        }
+        else
+        {
+            Debug.Log("NavMeshAgentが取得できません");
         }
     }
 }

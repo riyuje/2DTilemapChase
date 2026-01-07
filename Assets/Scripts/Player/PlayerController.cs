@@ -18,6 +18,16 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim; //Animatorコンポーネントの取得用
     private Vector2 lookDirection = new Vector2(0, -1.0f);  //キャラの向きの情報の設定用
+
+    private PlayerState state = PlayerState.Normal;
+    private SearchPlayerQTE searchPlayerQTE;
+
+    public enum PlayerState
+    {
+        Normal,
+        QTE,
+        Dead
+    }
     
     void Start()
     {
@@ -29,6 +39,18 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update()
+    {
+        if(state == PlayerState.Normal)
+        {
+            NormalUpdate();
+        }
+        else if (state == PlayerState.QTE)
+        {
+            QTEUpdate();
+        }
+    }
+
+    private void NormalUpdate()
     {
         //InputManagerのHorizontalに登録してあるキーが入力されたら、水平(横)方向の入力値として代入
         horizontal = Input.GetAxis("Horizontal");
@@ -43,8 +65,27 @@ public class PlayerController : MonoBehaviour
         SyncMoveAnimation();
     }
 
+    private void QTEUpdate()
+    {
+        if (searchPlayerQTE == null)
+        {
+            return;
+        }
+
+        if (Input.GetButtonDown(searchPlayerQTE.GetPushButton().ToString()))
+        {
+            searchPlayerQTE.SetFinish();
+            SetState(PlayerState.Normal, null);
+        }
+    }
+
     void FixedUpdate()
     {
+        if(state != PlayerState.Normal)
+        {
+            return;
+        }
+
         //移動
         Move();
     }
@@ -94,5 +135,34 @@ public class PlayerController : MonoBehaviour
 
         //停止アニメーション用
         anim.SetFloat("Speed",move.magnitude);
+    }
+
+    //キャラクターの状態変更関数
+    public void SetState(PlayerState state, SearchPlayerQTE searchPlayerQTE)
+    {
+        //状態を変更
+        this.state = state;
+
+        if(state == PlayerState.Normal)
+        {
+            this.searchPlayerQTE = null;
+        }
+        else if(state == PlayerState.QTE)
+        {
+            this.searchPlayerQTE = searchPlayerQTE;
+
+            //移動停止
+            rb.linearVelocity = Vector2.zero;
+            anim.SetFloat("Speed", 0f);
+        }
+        else if(state == PlayerState.Dead)
+        {
+            //死亡処理
+        }
+    }
+
+    public PlayerState GetState()
+    {
+        return state;
     }
 }
