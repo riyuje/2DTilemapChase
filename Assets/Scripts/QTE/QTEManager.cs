@@ -36,7 +36,11 @@ public class QTEManager : MonoBehaviour
     [SerializeField]
     private PushButton pushButton;
 
-    public static QTEManager instance; 
+    public static QTEManager instance;
+
+    //UIManager呼び出し
+    [SerializeField]
+    private UIManager uiManager;
 
     private void Awake()
     {
@@ -44,7 +48,7 @@ public class QTEManager : MonoBehaviour
         {
             instance = this;
 
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -98,5 +102,12 @@ public class QTEManager : MonoBehaviour
     public PushButton GetPushButton()
     {
         return pushButton;
+    }
+
+    //UIManagerとTimeLimitを繋ぐ中継地点
+    public void PrepareGameOverUI()
+    {
+        //UIManagerのゲームオーバー処理を呼び出す
+        uiManager.DisplayGameOverInfo();
     }
 }

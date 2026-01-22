@@ -79,6 +79,8 @@ public class TimeLimit : MonoBehaviour
             {
                 SetFinished();
                 playerController.SetState(PlayerController.PlayerState.Dead);
+
+                QTEManager.instance.PrepareGameOverUI();
             }
         }
     }

@@ -56,6 +56,7 @@ public class UIManager : MonoBehaviour
 
         // InfoBackGround ゲームオブジェクトの持つ CanvasGroup コンポーネントの Alpha の値を、1秒かけて 1 に変更して、背景と文字が画面に見えるようにする
         canvasGroupInfo.DOFade(1.0f, 1.0f);
+        txtInfoCanvasGroup.DOFade(1.0f, 1.0f);
 
         // 文字列をアニメーションさせて表示
         txtInfo.DOText("Game Over...", 1.0f);
@@ -89,7 +90,7 @@ public class UIManager : MonoBehaviour
         // 現在のシーンの名前を取得
         string sceneName = SceneManager.GetActiveScene().name;
 
-        canvasGroupInfo.DOFade(0f, 1.0f)
+        canvasGroupInfo.DOFade(0f, 1.0f).SetLink(gameObject)
             .OnComplete(() => {
                 Debug.Log("Restart");
                 SceneManager.LoadScene(sceneName);
@@ -120,11 +121,11 @@ public class UIManager : MonoBehaviour
         if (tweener == null)
         {
             // Tap Startの文字をゆっくり点滅させる
-            tweener = lblStart.gameObject.GetComponent<CanvasGroup>().DOFade(0, 1.0f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+            tweener = lblStart.gameObject.GetComponent<CanvasGroup>().DOFade(0, 1.0f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo).SetLink(gameObject);
         }
         else
         {
-            tweener.Kill();
+            tweener?.Kill();
         }
     }
 
@@ -167,7 +168,7 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Debug.Log("フェードアウト完了");
 
-        canvasGroupInfo.gameObject.SetActive(false);
+        //canvasGroupInfo.gameObject.SetActive(false);
         canvasGroupTitle.gameObject.SetActive(false);
         Debug.Log("タイトル非表示");
     }

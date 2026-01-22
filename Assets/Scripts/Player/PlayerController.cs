@@ -154,6 +154,7 @@ public class PlayerController : MonoBehaviour
         else if(state == PlayerState.Dead)
         {
             //死亡処理
+            GameOver();
         }
     }
 
