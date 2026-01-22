@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private float vertical;    //y軸(垂直・縦)方向の入力の値の代入用
 
     private bool isDash;  //ダッシュしているか否かを判断する用
+    private bool isGameOver = false;  //GameOver状態の判定用。trueならゲームオーバー
 
     private Animator anim; //Animatorコンポーネントの取得用
     private Vector2 lookDirection = new Vector2(0, -1.0f);  //キャラの向きの情報の設定用
@@ -78,6 +79,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         if(state != PlayerState.Normal)
+        {
+            return;
+        }
+
+        if(isGameOver == true)
         {
             return;
         }
@@ -154,5 +160,18 @@ public class PlayerController : MonoBehaviour
     public PlayerState GetState()
     {
         return state;
+    }
+
+    ///<summary>
+    ///ゲームオーバー
+    ///</summary>
+    public void GameOver()
+    {
+        isGameOver = true;
+
+        //ConsoleビューにisGameOver変数の値を表示する。ここが実行されるとtrueと表示される
+        Debug.Log(isGameOver);
+
+        
     }
 }
