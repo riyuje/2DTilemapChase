@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 lookDirection = new Vector2(0, -1.0f);  //キャラの向きの情報の設定用
 
     private PlayerState state = PlayerState.Normal;
+
+    private bool HasItem; //アイテムを取得したかどうか
     
 
     public enum PlayerState
@@ -90,6 +94,7 @@ public class PlayerController : MonoBehaviour
 
         //移動
         Move();
+
     }
 
     ///<summary>
@@ -111,6 +116,20 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.linearVelocity = dir * speed;
+    }
+
+    ///<summary>
+    ///アイテム取得したか否か
+    ///</summary>
+    public void GetItem()
+    {
+        HasItem = true;
+    }
+
+    public void DropItem()
+    {
+        HasItem = false;
+        Debug.Log("アイテムを捨てた");
     }
 
     ///<summary>
