@@ -2645,6 +2645,7 @@ GameObject:
   - component: {fileID: 468608708}
   - component: {fileID: 468608710}
   - component: {fileID: 468608709}
+  - component: {fileID: 468608711}
   m_Layer: 5
   m_Name: imgFrame_2
   m_TagString: Untagged
@@ -2710,6 +2711,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468608707}
   m_CullTransparentMesh: 1
+--- !u!114 &468608711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468608707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f63d038e588f55644a8826bc8ea8f1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
+  itemIcon: {fileID: 1805186303}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,6 +3075,7 @@ GameObject:
   - component: {fileID: 793433664}
   - component: {fileID: 793433666}
   - component: {fileID: 793433665}
+  - component: {fileID: 793433667}
   m_Layer: 5
   m_Name: imgFrame_0
   m_TagString: Untagged
@@ -3126,6 +3141,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793433663}
   m_CullTransparentMesh: 1
+--- !u!114 &793433667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793433663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f63d038e588f55644a8826bc8ea8f1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
+  itemIcon: {fileID: 939270115}
 --- !u!1 &914812143
 GameObject:
   m_ObjectHideFlags: 0
@@ -4213,6 +4241,7 @@ GameObject:
   - component: {fileID: 1545192268}
   - component: {fileID: 1545192270}
   - component: {fileID: 1545192269}
+  - component: {fileID: 1545192271}
   m_Layer: 5
   m_Name: imgFrame_1
   m_TagString: Untagged
@@ -4278,6 +4307,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545192267}
   m_CullTransparentMesh: 1
+--- !u!114 &1545192271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545192267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f63d038e588f55644a8826bc8ea8f1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
+  itemIcon: {fileID: 566628767}
 --- !u!114 &1580356854 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8863989404281388503, guid: 259aa482c4ba9364089fd8ecd2c36435, type: 3}
@@ -5613,6 +5655,8 @@ MonoBehaviour:
   isSpawnEnemy: 0
   target: {fileID: 1206766081}
   tilemap: {fileID: 113475893}
+  timer: 0
+  maxEnemyCount: 0
 --- !u!1 &1886145960
 GameObject:
   m_ObjectHideFlags: 0
