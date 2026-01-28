@@ -23,3 +23,8 @@ MonoBehaviour:
     description: "\u5F37\u3044\u5149\u3092\u653E\u3064,\u76EE\u304C\u5927\u304D\u306A\u6575\u306B\u6709\u52B9"
     effectiveEnemyId: 1
     stopTime: 5
+  - id: 2
+    name: "\u7206\u5F3E"
+    description: "\u7206\u767A\u3059\u308B,\u53E3\u304C\u5927\u304D\u306A\u6575\u306B\u6709\u52B9"
+    effectiveEnemyId: 1
+    stopTime: 5

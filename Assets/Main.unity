@@ -3001,7 +3001,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5052a42ed5491146b219ed954135037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventryManager
-  equipItemId: 0
+  inventorySlots:
+  - {fileID: 793433667}
+  - {fileID: 1545192271}
+  - {fileID: 468608711}
+  bombCount: 0
   clackerCount: 3
   liteCount: 3
 --- !u!4 &713632873
@@ -4799,7 +4803,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.54, y: -1.87}
+  m_AnchoredPosition: {x: 1.5068, y: -1.7815}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1689085352
@@ -4814,6 +4818,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077cf10510b32854186baffd811572d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::itemPickup
+  itemId: 1
+  itemData:
+    id: 0
+    name: 
+    description: 
+    effectiveEnemyId: 0
+    stopTime: 0
 --- !u!1 &1706194496
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
-﻿[System.Serializable]
+﻿using UnityEngine;
+
+[System.Serializable]
 public class ItemData 
 {
     public int id;
@@ -6,4 +8,5 @@ public class ItemData
     public string description;
     public int effectiveEnemyId;  //効果のある敵の番号
     public float stopTime;  //敵が止まる時間
+    public Sprite iconSprite; //アイテム画像
 }

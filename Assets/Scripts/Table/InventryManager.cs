@@ -1,10 +1,45 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class InventryManager : MonoBehaviour
 {
-    public int equipItemId;  //‘•”õ‚µ‚Ä‚éƒAƒCƒeƒ€”Ô†
-    public int clackerCount; //‚Á‚Ä‚¢‚éƒNƒ‰ƒbƒJ[‚Ì”
-    public int liteCount;  //‚Á‚Ä‚¢‚é‰ù’†“d“”‚Ì”
+    public static InventryManager instance;
+
+    [SerializeField]
+    private InventorySlot[] inventorySlots;
+    
+    public int bombCount; //æŒã£ã¦ã„ã‚‹çˆ†å¼¾ã®æ•°
+    public int clackerCount; //æŒã£ã¦ã„ã‚‹ã‚¯ãƒ©ãƒƒã‚«ãƒ¼ã®æ•°
+    public int liteCount;  //æŒã£ã¦ã„ã‚‹æ‡ä¸­é›»ç¯ã®æ•°
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+
+            //DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void GetItem(ItemData itemData)
+    {
+        Debug.Log("GetItemãƒ¡ã‚½ãƒƒãƒ‰");
+
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i].HasItem() == false)
+            {
+
+                inventorySlots[i].SetItemData(itemData);
+
+                break;
+            }
+        }
+    }
     void Start()
     {
         
