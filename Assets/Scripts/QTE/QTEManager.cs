@@ -70,6 +70,11 @@ public class QTEManager : MonoBehaviour
         
     }
 
+    public bool IsPlayingQTE()
+    {
+        return isPlayingQTE;
+    }
+
     public void OpenQTE()
     {
         if (isPlayingQTE  == true)

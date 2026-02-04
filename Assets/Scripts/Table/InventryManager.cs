@@ -48,6 +48,42 @@ public class InventryManager : MonoBehaviour
     
     void Update()
     {
-        
+        if (QTEManager.instance == null)
+        {
+            return;
+        }
+
+        if (QTEManager.instance.IsPlayingQTE())
+        {
+            SetAllSlotsQTE();
+        }
+        else
+        {
+            SetAllSlotsNormal();
+        }
+    }
+
+    private void SetAllSlotsQTE()
+    {
+        foreach(var slot in inventorySlots)
+        {
+            if (slot.HasItem())
+            {
+                slot.SetQTEButton();
+            }
+        }
+    }
+
+    private void SetAllSlotsNormal()
+    {
+        foreach(var slot in inventorySlots)
+        {
+            if (slot.HasItem())
+            {
+                slot.SetUseButton();　//通常時:使うボタン
+
+                slot.SetDiscardButton();　//通常時:捨てるボタン
+            }
+        }
     }
 }
