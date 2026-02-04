@@ -40,7 +40,7 @@ public class Chaser : MonoBehaviour
         float distance = Vector3.Distance(transform.position, targetWorldPos);
 
         //どのくらい離れているかを表示
-        Debug.Log("対象までの距離:" + distance);
+        //Debug.Log("対象までの距離:" + distance);
 
         //対象が視界に入った場合(距離が近い場合)
         if(distance <= sightRange)

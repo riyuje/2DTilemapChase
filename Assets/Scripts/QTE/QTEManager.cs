@@ -42,6 +42,10 @@ public class QTEManager : MonoBehaviour
     [SerializeField]
     private UIManager uiManager;
 
+    //敵情報
+    [SerializeField]
+    private EnemyData qteEnemyData;
+
     private void Awake()
     {
         if(instance == null)
@@ -75,12 +79,15 @@ public class QTEManager : MonoBehaviour
         return isPlayingQTE;
     }
 
-    public void OpenQTE()
+    public void OpenQTE(EnemyData enemyData)
     {
+
         if (isPlayingQTE  == true)
         {
             return;
         }
+
+        qteEnemyData = enemyData;
 
         isPlayingQTE = true;
 
@@ -114,5 +121,17 @@ public class QTEManager : MonoBehaviour
     {
         //UIManagerのゲームオーバー処理を呼び出す
         uiManager.DisplayGameOverInfo();
+    }
+
+    public void CheckWeakItemid(int itemid)
+    {
+        if(itemid == qteEnemyData.weakItemId) //弱点チェック
+        {
+            Debug.Log("弱点");
+        }
+        else
+        {
+            Debug.Log("弱点ではない");
+        }
     }
 }

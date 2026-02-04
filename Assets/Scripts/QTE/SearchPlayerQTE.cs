@@ -4,9 +4,19 @@ using System.Collections.Generic;
 
 public class SearchPlayerQTE : MonoBehaviour
 {
+    [SerializeField]
+    private EnemyData enemyData;
+
+    [SerializeField]
+    private int id;
 
     //キャラクター操作スクリプト
     private PlayerController playerController;
+
+    private void Start()
+    {
+        enemyData = TableManager.instance.GetEnemyData(id);
+    }
 
     /// <summary>
     /// Playerを補足
@@ -19,7 +29,7 @@ public class SearchPlayerQTE : MonoBehaviour
             //コンソールにPlayer表示
             Debug.Log(col.gameObject.tag);
 
-            QTEManager.instance.OpenQTE();
+            QTEManager.instance.OpenQTE(enemyData);
         }
     }
 }

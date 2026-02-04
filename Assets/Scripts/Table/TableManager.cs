@@ -30,6 +30,11 @@ public class TableManager : MonoBehaviour
         return itemDataTable.itemDataList.FirstOrDefault(data => data.id == itemid);
     }
 
+    public EnemyData GetEnemyData(int enemyid)
+    {
+        return enemyDataTable.enemyDataList.FirstOrDefault(data => data.id == enemyid);
+    }
+
     void Start()
     {
         

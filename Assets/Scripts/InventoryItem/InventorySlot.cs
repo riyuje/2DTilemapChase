@@ -15,7 +15,7 @@ public class InventorySlot : MonoBehaviour
 
     public void SetItemData(ItemData newItemData)
     {
-        Debug.Log("newItemData取得" + newItemData.id);
+        Debug.Log("newItemData取得" + newItemData?.id);
 
         itemData = newItemData;
 
@@ -80,11 +80,15 @@ public class InventorySlot : MonoBehaviour
     private void DiscardItem()
     {
         Debug.Log("アイテムを捨てる");
+
+        SetItemData(null);
     }
 
     private void UseItem()
     {
         Debug.Log("アイテムを使う");
+        QTEManager.instance.CheckWeakItemid(itemData.id);
+        DiscardItem();
     }
 
     private void PushQTEButton()

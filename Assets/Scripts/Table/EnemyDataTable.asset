@@ -14,10 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDataTable
   enemyDataList:
   - id: 0
+    weakItemId: 0
     name: A
     description: 
     moveSpeed: 3
   - id: 1
+    weakItemId: 1
     name: B
+    description: 
+    moveSpeed: 3
+  - id: 2
+    weakItemId: 2
+    name: C
     description: 
     moveSpeed: 3

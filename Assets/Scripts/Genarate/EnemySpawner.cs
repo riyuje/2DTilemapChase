@@ -103,7 +103,7 @@ public class EnemySpawner : MonoBehaviour
 
 
 
-            Debug.Log("敵の位置調整して配置");
+            //Debug.Log("敵の位置調整して配置");
         }
         else
         {
@@ -122,7 +122,7 @@ public class EnemySpawner : MonoBehaviour
         // 生成
         Chaser enemy = Instantiate(enemyPrefab, spawnPos, enemyPrefab.transform.rotation);
 
-        Debug.Log("敵生成");
+        //Debug.Log("敵生成");
 
         return enemy;
     }
