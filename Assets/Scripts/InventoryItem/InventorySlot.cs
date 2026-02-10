@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEditor.Experimental.GraphView;
 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField]
-    private Button actionButton; //ボタン参照を追加する
 
     [SerializeField]
     private Image itemIcon;
@@ -28,7 +28,7 @@ public class InventorySlot : MonoBehaviour
         else
         {
             hasItem = false;
-            itemIcon.sprite = null; //アイテム欄、空のままにする
+            itemIcon.sprite = null; //アイテム欄、空にする
             itemIcon.enabled = false;
         }
     }
@@ -36,6 +36,11 @@ public class InventorySlot : MonoBehaviour
     public bool HasItem()
     {
         return hasItem;
+    }
+
+    public void ClearItem()
+    {
+        SetItemData(null);
     }
     public void SetItem(Sprite sprite)
     {
@@ -52,48 +57,23 @@ public class InventorySlot : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// 通常時:捨てる
-    /// </summary>
-    public void SetDiscardButton()
+    ///<summary>
+    ///左右クリック判定
+    ///</summary>
+    public void OnPointerClick(PointerEventData eventData)
     {
-        actionButton.onClick.RemoveAllListeners();
-        actionButton.onClick.AddListener(DiscardItem);
-    }
-    /// <summary>
-    /// 通常時:使う
-    /// </summary>
-    public void SetUseButton()
-    {
-        actionButton.onClick.RemoveAllListeners();
-        actionButton.onClick.AddListener(UseItem);
-    }
-    /// <summary>
-    /// QTE時
-    /// </summary>
-    public void SetQTEButton()
-    {
-        actionButton.onClick.RemoveAllListeners();
-        actionButton.onClick.AddListener(PushQTEButton);
-    }
+        if (!hasItem) return;
 
-    private void DiscardItem()
-    {
-        Debug.Log("アイテムを捨てる");
-
-        SetItemData(null);
-    }
-
-    private void UseItem()
-    {
-        Debug.Log("アイテムを使う");
-        QTEManager.instance.CheckWeakItemid(itemData.id);
-        DiscardItem();
-    }
-
-    private void PushQTEButton()
-    {
-        Debug.Log("QTEボタン押下");
+        //左クリック:選択
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+            InventryManager.instance.SelectSlot(this);
+        }
+        //右クリック:捨てる
+        else if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            InventryManager.instance.DiscardSlot(this);
+        }
     }
 }
 

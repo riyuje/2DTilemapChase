@@ -6,6 +6,8 @@ public class InventryManager : MonoBehaviour
 
     [SerializeField]
     private InventorySlot[] inventorySlots;
+
+    private InventorySlot selectedSlot;
     
     public int bombCount; //持っている爆弾の数
     public int clackerCount; //持っているクラッカーの数
@@ -24,6 +26,11 @@ public class InventryManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    /// <summary>
+    /// アイテム取得
+    /// </summary>
+    /// <param name="itemData"></param>
 
     public void GetItem(ItemData itemData)
     {
@@ -48,42 +55,52 @@ public class InventryManager : MonoBehaviour
     
     void Update()
     {
-        if (QTEManager.instance == null)
-        {
-            return;
-        }
-
-        if (QTEManager.instance.IsPlayingQTE())
-        {
-            SetAllSlotsQTE();
-        }
-        else
-        {
-            SetAllSlotsNormal();
-        }
+        
     }
 
-    private void SetAllSlotsQTE()
+    ///<summary>
+    ///左クリック時
+    ///</summary>
+    public void SelectSlot(InventorySlot slot)
     {
-        foreach(var slot in inventorySlots)
-        {
-            if (slot.HasItem())
-            {
-                slot.SetQTEButton();
-            }
-        }
+        selectedSlot = slot;
+        Debug.Log("選択中アイテム:" + slot.itemData.id);
     }
 
-    private void SetAllSlotsNormal()
+    ///<summary>
+    ///右クリック時
+    /// </summary>
+    public void DiscardSlot(InventorySlot slot)
     {
-        foreach(var slot in inventorySlots)
-        {
-            if (slot.HasItem())
-            {
-                slot.SetUseButton();　//通常時:使うボタン
+        if (!slot.HasItem()) return;
 
-                slot.SetDiscardButton();　//通常時:捨てるボタン
-            }
+        slot.ClearItem();
+
+        if(selectedSlot == slot)
+        {
+            selectedSlot = null;
         }
+
+        Debug.Log("アイテムを捨てる");
+    }
+
+    ///<summary>
+    ///QTE成功時に呼ばれる
+    /// </summary>
+    public void UseSelectedItemInQTE()
+    {
+        if (selectedSlot == null) return;
+
+        ItemData item = selectedSlot.itemData;
+
+        QTEManager.instance.CheckWeakItemid(item.id);
+
+        selectedSlot.ClearItem();
+        selectedSlot = null;
+    }
+
+    public bool HasSelectedItem()
+    {
+        return selectedSlot != null;
     }
 }

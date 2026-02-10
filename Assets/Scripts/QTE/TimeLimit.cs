@@ -40,7 +40,7 @@ public class TimeLimit : MonoBehaviour
         this.limitTime = limit;
 
         //ボタンを押すとテキスト表示する
-        if (pushButton == QTEManager.PushButton.Fire1)
+        if (pushButton == QTEManager.PushButton.Jump)
         {
             this.pushButtonText.text = "Push SPACE Key";
         }

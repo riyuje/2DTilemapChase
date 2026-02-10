@@ -5,7 +5,7 @@ public class QTEManager : MonoBehaviour
     //InputManagerで設定したボタンを設定する
     public enum PushButton
     {
-        Fire1
+        Jump
     }
 
     //QTEの種類

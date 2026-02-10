@@ -2895,7 +2895,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63d038e588f55644a8826bc8ea8f1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
-  actionButton: {fileID: 468608712}
   itemIcon: {fileID: 1805186303}
   hasItem: 0
   itemData:
@@ -3554,7 +3553,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63d038e588f55644a8826bc8ea8f1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
-  actionButton: {fileID: 793433668}
   itemIcon: {fileID: 939270115}
   hasItem: 0
   itemData:
@@ -4780,7 +4778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63d038e588f55644a8826bc8ea8f1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
-  actionButton: {fileID: 1545192272}
   itemIcon: {fileID: 566628767}
   hasItem: 0
   itemData:
