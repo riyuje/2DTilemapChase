@@ -112,10 +112,13 @@ public class InventryManager : MonoBehaviour
             selectedSlot = null;
             return true;
         }
-
-        Debug.Log("弱点ではない");
-        selectedSlot = null;
-        return false;
+        else
+        {
+            Debug.Log("弱点ではない");
+            selectedSlot = null;
+            return false;
+        }
+        
     }
 
 }
