@@ -47,6 +47,12 @@ public class QTEManager : MonoBehaviour
     [SerializeField]
     private EnemyData qteEnemyData;
 
+    
+
+    //Chaser
+    [SerializeField]
+    private Chaser qteChaser;
+
     private void Awake()
     {
         if(instance == null)
@@ -80,7 +86,7 @@ public class QTEManager : MonoBehaviour
         return isPlayingQTE;
     }
 
-    public void OpenQTE(EnemyData enemyData)
+    public void OpenQTE(EnemyData enemyData, Chaser chaser)
     {
 
         if (isPlayingQTE  == true)
@@ -89,6 +95,8 @@ public class QTEManager : MonoBehaviour
         }
 
         qteEnemyData = enemyData;
+
+        qteChaser = chaser;
 
         isPlayingQTE = true;
 
@@ -105,6 +113,8 @@ public class QTEManager : MonoBehaviour
     //QTE終了設定
     public void SetFinish()
     {
+        InventryManager.instance.UseSelectedItemInQTE();
+
         //イベントが成功後、QTEイベント初期化
         isPlayingQTE = false;
         //QTE用のUIを非表示
@@ -124,17 +134,17 @@ public class QTEManager : MonoBehaviour
         uiManager.DisplayGameOverInfo();
     }
 
-    public bool CheckWeakItemid(int itemid)
+    public (bool, Chaser) CheckWeakItemid(int itemid)
     {
         if(itemid == qteEnemyData.weakItemId) //弱点チェック
         {
             Debug.Log("弱点");
-            return true;
+            return (true, qteChaser);
         }
         else
         {
             Debug.Log("弱点ではない");
-            return false;
+            return (false, qteChaser);
         }
     }
 }

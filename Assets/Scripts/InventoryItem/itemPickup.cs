@@ -9,6 +9,8 @@ public class itemPickup : MonoBehaviour
 
     private void Start()
     {
+        itemId = Random.Range(0, TableManager.instance.GetItemDataCount());
+
         itemData = TableManager.instance.GetItemData(itemId);
     }
 

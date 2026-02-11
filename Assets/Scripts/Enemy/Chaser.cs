@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -16,9 +17,26 @@ public class Chaser : MonoBehaviour
 
     [SerializeField]
     private NavMeshAgent agent;  //NavMeshAgentを使用
+
+    [SerializeField]
+    private bool IsPause; //trueでPause中,falseでMove中
+
+    [SerializeField]
+    private float PauseTime; 
+
+
     void Start()
     {
        
+    }
+
+    public void SetPauseTime(float pauseTime)
+    {
+        Debug.Log("敵静止");
+
+        PauseTime = pauseTime;
+
+        IsPause = true;
     }
 
     void Update()
@@ -27,6 +45,18 @@ public class Chaser : MonoBehaviour
         if(!agent || !target || !tilemap)
         {
             //処理を行わない(エラーが出てしまうため)
+            return;
+        }
+
+        if (IsPause == true)
+        {
+            PauseTime -= Time.deltaTime;
+
+            if(PauseTime <= 0)
+            {
+                IsPause = false;
+            }
+
             return;
         }
 

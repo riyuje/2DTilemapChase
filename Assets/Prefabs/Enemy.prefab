@@ -235,6 +235,8 @@ MonoBehaviour:
   sightRange: 100
   moveSpeed: 2
   agent: {fileID: 0}
+  IsPause: 0
+  PauseTime: 0
 --- !u!114 &4436649147865350952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +249,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33fa65dde96d79a4fbed4fd20353a52b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SearchPlayerQTE
+  enemyData:
+    id: 0
+    weakItemId: 0
+    name: 
+    description: 
+    moveSpeed: 0
+  chaser: {fileID: 2250533984247673951}
+  id: 0
 --- !u!50 &31672004373196248
 Rigidbody2D:
   serializedVersion: 5

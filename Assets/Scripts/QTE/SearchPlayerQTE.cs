@@ -8,6 +8,9 @@ public class SearchPlayerQTE : MonoBehaviour
     private EnemyData enemyData;
 
     [SerializeField]
+    private Chaser chaser;
+
+    [SerializeField]
     private int id;
 
     //キャラクター操作スクリプト
@@ -29,7 +32,7 @@ public class SearchPlayerQTE : MonoBehaviour
             //コンソールにPlayer表示
             Debug.Log(col.gameObject.tag);
 
-            QTEManager.instance.OpenQTE(enemyData);
+            QTEManager.instance.OpenQTE(enemyData, chaser);
         }
     }
 }

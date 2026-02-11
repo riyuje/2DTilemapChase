@@ -64,11 +64,11 @@ public class TimeLimit : MonoBehaviour
         if (!startTimer) return;
 
         //成功判定
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            bool success = InventryManager.instance.UseSelectedItemInQTE();
+            //bool IsSuccess = InventryManager.instance.UseSelectedItemInQTE();
 
-            if (success)
+            //if (IsSuccess)
             {
                 OnSuccess();
             }
@@ -98,7 +98,7 @@ public class TimeLimit : MonoBehaviour
     {
         Debug.Log("QTE成功");
 
-        InventryManager.instance.UseSelectedItemInQTE();
+        //InventryManager.instance.UseSelectedItemInQTE();
 
         QTEManager.instance.SetFinish();
         SetFinished();

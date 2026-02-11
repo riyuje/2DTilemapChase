@@ -35,14 +35,8 @@ public class TableManager : MonoBehaviour
         return enemyDataTable.enemyDataList.FirstOrDefault(data => data.id == enemyid);
     }
 
-    void Start()
+    public int GetItemDataCount()
     {
-        
-    }
-
-    
-    void Update()
-    {
-        
+        return itemDataTable.itemDataList.Count;
     }
 }

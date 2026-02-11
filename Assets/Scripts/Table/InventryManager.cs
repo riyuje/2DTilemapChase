@@ -8,7 +8,11 @@ public class InventryManager : MonoBehaviour
     private InventorySlot[] inventorySlots;
 
     private InventorySlot selectedSlot;
-    
+
+    //敵静止時間
+    [SerializeField]
+    private float pauseTime;
+
     public int bombCount; //持っている爆弾の数
     public int clackerCount; //持っているクラッカーの数
     public int liteCount;  //持っている懐中電灯の数
@@ -103,13 +107,14 @@ public class InventryManager : MonoBehaviour
 
         ItemData item = selectedSlot.itemData;
 
-        bool isWeak = QTEManager.instance.CheckWeakItemid(item.id);
+        (bool isWeak, Chaser qteChaser) = QTEManager.instance.CheckWeakItemid(item.id);
 
         if (isWeak)
         {
             selectedSlot.ClearItem();
             Debug.Log("弱点一致！アイテム消費");
             selectedSlot = null;
+            qteChaser.SetPauseTime(pauseTime);
             return true;
         }
         else
