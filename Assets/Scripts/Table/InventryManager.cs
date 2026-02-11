@@ -87,20 +87,35 @@ public class InventryManager : MonoBehaviour
     ///<summary>
     ///QTE成功時に呼ばれる
     /// </summary>
-    public void UseSelectedItemInQTE()
+    public bool UseSelectedItemInQTE()
     {
-        if (selectedSlot == null) return;
+        if (selectedSlot == null)
+        {
+            Debug.Log("選択アイテム無し");
+            return false;
+        }
+
+        if (!selectedSlot.HasItem())
+        {
+            selectedSlot = null;
+            return false;
+        }
 
         ItemData item = selectedSlot.itemData;
 
-        QTEManager.instance.CheckWeakItemid(item.id);
+        bool isWeak = QTEManager.instance.CheckWeakItemid(item.id);
 
-        selectedSlot.ClearItem();
+        if (isWeak)
+        {
+            selectedSlot.ClearItem();
+            Debug.Log("弱点一致！アイテム消費");
+            selectedSlot = null;
+            return true;
+        }
+
+        Debug.Log("弱点ではない");
         selectedSlot = null;
+        return false;
     }
 
-    public bool HasSelectedItem()
-    {
-        return selectedSlot != null;
-    }
 }

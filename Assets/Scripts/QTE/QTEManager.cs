@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine;
 
 public class QTEManager : MonoBehaviour
 {
@@ -123,15 +124,17 @@ public class QTEManager : MonoBehaviour
         uiManager.DisplayGameOverInfo();
     }
 
-    public void CheckWeakItemid(int itemid)
+    public bool CheckWeakItemid(int itemid)
     {
         if(itemid == qteEnemyData.weakItemId) //弱点チェック
         {
             Debug.Log("弱点");
+            return true;
         }
         else
         {
             Debug.Log("弱点ではない");
+            return false;
         }
     }
 }

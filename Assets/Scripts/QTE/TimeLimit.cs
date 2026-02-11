@@ -61,29 +61,49 @@ public class TimeLimit : MonoBehaviour
 
     void Update()
     {
-        if (startTimer)
+        if (!startTimer) return;
+
+        //成功判定
+        if (Input.GetButtonDown("Jump"))
         {
-            //制限時間をスライダーの値に反映させる
-            if (nowTime < limitTime)
-            {
-                nowTime += Time.deltaTime;
-                slider.value += slider.maxValue / limitTime * Time.deltaTime;
+            bool success = InventryManager.instance.UseSelectedItemInQTE();
 
-                //危ない領域に入ったらタイマーの色を変更する
-                if (slider.value >= (slider.maxValue * (limitPer * 0.01f)))
-                {
-                    timerImage.color = new Color(1f, 0f, 0f, 1f);
-                }
-            }
-            else
+            if (success)
             {
-                SetFinished();
-                playerController.SetState(PlayerController.PlayerState.Dead);
-
-                QTEManager.instance.PrepareGameOverUI();
+                OnSuccess();
             }
         }
+
+
+        //タイマー処理
+        if (nowTime < limitTime)
+        {
+            nowTime += Time.deltaTime;
+            slider.value += slider.maxValue / limitTime * Time.deltaTime;
+
+            if (slider.value >= (slider.maxValue * (limitPer * 0.01f)))
+            {
+                timerImage.color = Color.red;
+            }
+        }
+        else
+        {
+            SetFinished();
+            playerController.SetState(PlayerController.PlayerState.Dead);
+            QTEManager.instance.PrepareGameOverUI();
+        }
     }
+
+    void OnSuccess()
+    {
+        Debug.Log("QTE成功");
+
+        InventryManager.instance.UseSelectedItemInQTE();
+
+        QTEManager.instance.SetFinish();
+        SetFinished();
+    }
+
 
     //タイマーを止めてUIを非表示
     void SetFinished()
