@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
-public class BlackCatMove : MonoBehaviour
+public class BlackCatMoveHorrorEvent : HorrorEventBase
 {
-    [SerializeField] private float speed = 8f;
+    
 
-    void Update()
+    protected override void Update()
     {
+        //base.Update();
         transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 

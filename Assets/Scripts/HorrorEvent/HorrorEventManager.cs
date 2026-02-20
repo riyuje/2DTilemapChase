@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices.WindowsRuntime;
+using System.Collections;
 using UnityEngine;
 
 public class HorrorEventManager : MonoBehaviour
@@ -63,9 +64,8 @@ public class HorrorEventManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //AudioSourceを自動取得
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
+        //AudioSourceを自動取得(TryGetComponentを使用)
+        if (TryGetComponent(out audioSource) == false)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
@@ -73,8 +73,16 @@ public class HorrorEventManager : MonoBehaviour
 
     void Start()
     {
-        //指定したStartDelay秒後にActivate()を実行する
-        Invoke(nameof(Activate), startDelay);
+        StartCoroutine(ActivateAfterDelay());
+    }
+
+    private IEnumerator ActivateAfterDelay()
+    {
+        // startDelay秒待つ
+        yield return new WaitForSeconds(startDelay);
+
+        // Activateを実行
+        Activate();
     }
 
     private void Activate()

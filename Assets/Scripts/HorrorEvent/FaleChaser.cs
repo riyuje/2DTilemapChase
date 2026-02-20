@@ -2,13 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class FakeChaser : MonoBehaviour
+public class FakeChaserHorrorEvent : HorrorEventBase
 {
     [SerializeField] private Transform target;
     [SerializeField] private Tilemap tilemap;
 
     [SerializeField] private float sightRange = 10f;
-    [SerializeField] private float moveSpeed = 2f;
+    
 
     [SerializeField] private bool isPause;
     [SerializeField] private float pauseTime;
@@ -18,7 +18,7 @@ public class FakeChaser : MonoBehaviour
 
     private bool isDisappearing = false; //trueÇ»ÇÁè¡Ç¶ÇÈ
 
-    void Update()
+    protected override void Update()
     {
         if (!target) return;
 
@@ -44,7 +44,7 @@ public class FakeChaser : MonoBehaviour
         // áA í«Ç¢Ç©ÇØèàóù
         if (distance <= sightRange)
         {
-            float currentSpeed = moveSpeed;
+            float currentSpeed = speed;
 
             if (distance < 1.5f)
                 currentSpeed = 0.5f;
@@ -60,7 +60,7 @@ public class FakeChaser : MonoBehaviour
     private IEnumerator Disappear()
     {
         // ìÆÇ´Çé~ÇﬂÇÈ
-        moveSpeed = 0f;
+        speed = 0f;
 
         // è≠Çµé~Ç‹ÇÈ
         yield return new WaitForSeconds(stopTime);
@@ -69,15 +69,17 @@ public class FakeChaser : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Setup(Transform target, Tilemap tilemap)
-    {
-        this.target = target;
-        this.tilemap = tilemap;
-    }
+    
 
     public void SetPause(float time)
     {
         pauseTime = time;
         isPause = true;
+    }
+
+    public override void SetUp(Transform target, Tilemap tilemap)
+    {
+        this.target = target;
+        this.tilemap = tilemap;
     }
 }

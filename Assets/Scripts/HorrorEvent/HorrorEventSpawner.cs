@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 
 public class HorrorEventSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] eventPrefabs;
+    [SerializeField] private HorrorEventBase[] eventPrefabs;
     [SerializeField] private Transform player;
     [SerializeField] private Tilemap tilemap;
 
@@ -16,13 +16,13 @@ public class HorrorEventSpawner : MonoBehaviour
 
         Vector3 spawnPos = GetSpawnPosition();
 
-        GameObject obj = Instantiate(eventPrefabs[index], spawnPos, Quaternion.identity);
+        HorrorEventBase horrorEvent = Instantiate(eventPrefabs[index], spawnPos, Quaternion.identity);
 
         // FakeChaserなら初期化
-        FakeChaser fakechaser = obj.GetComponent<FakeChaser>();
-        if (fakechaser != null)
+        //FakeChaserHorrorEvent fakechaser = obj.GetComponent<FakeChaserHorrorEvent>();
+        if (horrorEvent is ISetUp) //horrorEvent変数にISetUPがついていますか(nullチェック込み)
         {
-            fakechaser.Setup(player, tilemap);
+            horrorEvent.SetUp(player, tilemap);
         }
     }
 
