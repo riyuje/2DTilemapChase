@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -11,6 +12,11 @@ public class FakeChaser : MonoBehaviour
 
     [SerializeField] private bool isPause;
     [SerializeField] private float pauseTime;
+
+    [SerializeField] private float disappearDistance = 1.2f;
+    [SerializeField] private float stopTime = 0.5f;
+
+    private bool isDisappearing = false; //trueÇ»ÇÁè¡Ç¶ÇÈ
 
     void Update()
     {
@@ -27,18 +33,40 @@ public class FakeChaser : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, target.position);
 
+        // á@ êÊÇ…è¡Ç¶ÇÈîªíË
+        if (!isDisappearing && distance <= disappearDistance)
+        {
+            isDisappearing = true;
+            StartCoroutine(Disappear());
+            return;
+        }
+
+        // áA í«Ç¢Ç©ÇØèàóù
         if (distance <= sightRange)
         {
+            float currentSpeed = moveSpeed;
+
+            if (distance < 1.5f)
+                currentSpeed = 0.5f;
+
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 target.position,
-                moveSpeed * Time.deltaTime
+                currentSpeed * Time.deltaTime
             );
-
-            // ãﬂÇ√Ç¢ÇΩÇÁå∏ë¨Åiï|Ç≥ââèoÅj
-            if (distance < 1.5f)
-                moveSpeed = 0.5f;
         }
+    }
+
+    private IEnumerator Disappear()
+    {
+        // ìÆÇ´Çé~ÇﬂÇÈ
+        moveSpeed = 0f;
+
+        // è≠Çµé~Ç‹ÇÈ
+        yield return new WaitForSeconds(stopTime);
+
+        // è¡Ç¶ÇÈ
+        Destroy(gameObject);
     }
 
     public void Setup(Transform target, Tilemap tilemap)
