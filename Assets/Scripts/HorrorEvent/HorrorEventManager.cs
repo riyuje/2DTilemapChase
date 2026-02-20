@@ -34,13 +34,12 @@ public class HorrorEventManager : MonoBehaviour
     [SerializeField]
     private  HorrorEventSpawner spawner;
 
-    //AudioSource
-    [SerializeField]
+    //AudioSourceは内部で取得
     private AudioSource audioSource;
 
-    //eventSE
+    //AudioClip配列
     [SerializeField]
-    private AudioClip eventSE;
+    private AudioClip[] eventSEs;
 
     //次シーンのHorrorEventが始まる時間
     private float nextEventTime;
@@ -62,6 +61,13 @@ public class HorrorEventManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        //AudioSourceを自動取得
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
 
@@ -120,10 +126,18 @@ public class HorrorEventManager : MonoBehaviour
             spawner.SpawnRandomEvent(exposure);
         }
 
-        //audioSourceとeventSEの両方が存在しているなら効果音を再生する
-        if(audioSource != null && eventSE != null)
+        // ▼ 配列からランダム再生
+        if (eventSEs != null && eventSEs.Length > 0)
         {
-            audioSource.PlayOneShot(eventSE);
+            int index = Random.Range(0, eventSEs.Length);
+            AudioClip clip = eventSEs[index];
+
+            if (clip != null)
+            {
+                audioSource.pitch = Random.Range(0.9f, 1.1f);
+                audioSource.volume = Random.Range(0.8f, 1f);
+                audioSource.PlayOneShot(clip);
+            }
         }
     }
     /// <summary>

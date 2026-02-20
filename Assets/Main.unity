@@ -3294,8 +3294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorrorEventSpawner
   eventPrefabs:
-  - {fileID: 4515387657738682387, guid: aaf3416449ceb0d47aace581dfcf4524, type: 3}
-  - {fileID: 3156442242519621516, guid: 3e4b1d899956f0b418fc269311faa277, type: 3}
+  - {fileID: 2626829398023543413, guid: aaf3416449ceb0d47aace581dfcf4524, type: 3}
+  - {fileID: 8988943037079162532, guid: 3e4b1d899956f0b418fc269311faa277, type: 3}
   player: {fileID: 1206766081}
   tilemap: {fileID: 113475893}
 --- !u!1 &713632871
@@ -6195,8 +6195,9 @@ MonoBehaviour:
   maxinterval: 12
   baseProbability: 0.2
   spawner: {fileID: 682674145}
-  audioSource: {fileID: 1721336133}
-  eventSE: {fileID: 8300000, guid: e6fdb6e306532a2469c3f04ac0c86464, type: 3}
+  eventSEs:
+  - {fileID: 8300000, guid: e6fdb6e306532a2469c3f04ac0c86464, type: 3}
+  - {fileID: 8300000, guid: 32c7de71e8fa02640b8525d488a6e69a, type: 3}
 --- !u!82 &1721336133
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6208,8 +6209,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: b885bc863a494cc4fb1513d8fa7f7f0e, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -7119,6 +7120,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FakeChaser
       objectReference: {fileID: 0}
+    - target: {fileID: 8988943037079162532, guid: 3e4b1d899956f0b418fc269311faa277, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7236,6 +7241,10 @@ PrefabInstance:
     - target: {fileID: 2626829398023543413, guid: aaf3416449ceb0d47aace581dfcf4524, type: 3}
       propertyPath: m_Name
       value: BlackCat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2626829398023543413, guid: aaf3416449ceb0d47aace581dfcf4524, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5222617012874023912, guid: aaf3416449ceb0d47aace581dfcf4524, type: 3}
       propertyPath: m_LocalPosition.x

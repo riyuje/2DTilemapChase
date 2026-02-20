@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Tilemaps;
 
 public class HorrorEventSpawner : MonoBehaviour
@@ -35,6 +36,14 @@ public class HorrorEventSpawner : MonoBehaviour
         float y = Random.Range(-height / 2f, height / 2f);
         Vector3 camPos = cam.transform.position;
 
-        return new Vector3(camPos.x - width / 2f - 2f, camPos.y + y, 0);
+        Vector3 rawPos = new Vector3(camPos.x - width / 2f - 2f, camPos.y + y, 0);
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(rawPos, out hit, 5f, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+
+        return rawPos; // fallback
     }
 }

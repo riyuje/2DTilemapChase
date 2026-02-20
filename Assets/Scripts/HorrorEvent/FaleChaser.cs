@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Tilemaps;
 
 public class FakeChaser : MonoBehaviour
@@ -8,16 +7,14 @@ public class FakeChaser : MonoBehaviour
     [SerializeField] private Tilemap tilemap;
 
     [SerializeField] private float sightRange = 10f;
-    [SerializeField] private float moveSpeed = 3f;
-
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private float moveSpeed = 2f;
 
     [SerializeField] private bool isPause;
     [SerializeField] private float pauseTime;
 
     void Update()
     {
-        if (!agent || !target || !tilemap) return;
+        if (!target) return;
 
         if (isPause)
         {
@@ -28,24 +25,19 @@ public class FakeChaser : MonoBehaviour
             return;
         }
 
-        Vector3Int cellPos = tilemap.WorldToCell(target.position);
-        Vector3 targetWorldPos = tilemap.GetCellCenterWorld(cellPos);
-
-        float distance = Vector3.Distance(transform.position, targetWorldPos);
+        float distance = Vector3.Distance(transform.position, target.position);
 
         if (distance <= sightRange)
         {
-            agent.SetDestination(targetWorldPos);
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                target.position,
+                moveSpeed * Time.deltaTime
+            );
 
             // ‹ß‚Ã‚¢‚½‚çŒ¸‘¬i•|‚³‰‰oj
             if (distance < 1.5f)
-                agent.speed = moveSpeed * 0.3f;
-            else
-                agent.speed = moveSpeed;
-        }
-        else
-        {
-            agent.ResetPath();
+                moveSpeed = 0.5f;
         }
     }
 
@@ -53,17 +45,11 @@ public class FakeChaser : MonoBehaviour
     {
         this.target = target;
         this.tilemap = tilemap;
+    }
 
-        if (TryGetComponent(out agent))
-        {
-            agent.updateRotation = false;
-            agent.updateUpAxis = false;
-            agent.destination = transform.position;
-            agent.speed = moveSpeed;
-        }
-        else
-        {
-            Debug.LogWarning("NavMeshAgent‚ªŽæ“¾‚Å‚«‚Ü‚¹‚ñ");
-        }
+    public void SetPause(float time)
+    {
+        pauseTime = time;
+        isPause = true;
     }
 }
